@@ -26,10 +26,10 @@ public class TreeScript : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.D)) {
-            if (!(treeHeight == -(maxLogsVisible)))
-            {
+            
+            
               DeleteOneLog();
-            }
+            
             
         }
     }
@@ -64,9 +64,15 @@ public class TreeScript : MonoBehaviour
 
     public void DeleteOneLog()
     {
-        if (currTreeHeight > 0)
+        if (currTreeHeight == -maxLogsVisible)
         {
-            Destroy(currentParts[0]);
+            print("DEJA DE TALAR SOS TONTITO ? no hay MASSSSSSSS");
+            return;
+        }
+            if (currTreeHeight > 0)
+        {
+            //   Destroy(currentParts[0]);
+            currentParts[0].GetComponent<LogBehaviour>().Delete();
             currentParts.RemoveAt(0);
             
             OrganizeLogs(true);
@@ -74,7 +80,8 @@ public class TreeScript : MonoBehaviour
         }
         else
         {
-            Destroy(currentParts[0]);
+            //  Destroy(currentParts[0]);
+            currentParts[0].GetComponent<LogBehaviour>().Delete();
             currentParts.RemoveAt(0);
             currTreeHeight--;
             OrganizeLogs(false);
