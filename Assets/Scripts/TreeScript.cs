@@ -7,6 +7,7 @@ public class TreeScript : MonoBehaviour
 {
     [Header("Tree Props")]
     public GameObject[] treeParts;
+    
     public int treeHeight = 10;
     public float partHeight = 2;
     public Transform basePoint;
@@ -60,7 +61,8 @@ public class TreeScript : MonoBehaviour
 
         for (int i = 0; i < maxLogsVisible; i++)
         {
-            var p = Instantiate(treeParts[0], this.transform);
+            int rndmIndex = RandomSelectParts();
+            var p = Instantiate(treeParts[rndmIndex], this.transform);
             p.transform.position = currentPos + basePoint.position;
             if (i == 0) {
                 currentPos.y += partInitY;
@@ -130,13 +132,21 @@ public class TreeScript : MonoBehaviour
         localPosNewLog.y = 36.6706f;
         localPosNewLog.x = 0;
         localPosNewLog.z = 0;
-             if (add) { 
-                var p = Instantiate(treeParts[0], this.transform);
+             if (add) {
+                int rndmIndex = RandomSelectParts();
+                var p = Instantiate(treeParts[rndmIndex], this.transform);
                 p.transform.localPosition = localPosNewLog;
 
                 p.name = "Part_" + treeHeight.ToString();
                 currentParts.Add(p);
              }
+    }
+
+    private int RandomSelectParts()
+    {
+        int index = Random.Range(0, treeParts.Length);
+        return index;
+
     }
 
     public void DeleteOneLog(){
