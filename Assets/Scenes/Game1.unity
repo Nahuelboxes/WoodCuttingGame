@@ -172,6 +172,8 @@ MonoBehaviour:
   basePoint: {fileID: 1791135042}
   baseHeight: 4.3
   currentParts: []
+  partInitY: 4.294601
+  incrementPartY: 7.019
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,10 +345,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 919982886, guid: cc42341e0b6e4574e94f103d06dd6abf, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6072547061651236936, guid: cc42341e0b6e4574e94f103d06dd6abf,
         type: 3}
       propertyPath: m_LocalPosition.x
