@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b630944b72dc22e4c84c63506896dd39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  type: {fileID: 11400000, guid: 20b696add6e2eca4c8d41f1c4922b36a, type: 2}
+  hitsToDestroy: 0
   explosionPrefab: {fileID: 139366, guid: ef6bc3f5a00346f48a06048276a76826, type: 3}
   offset: {x: 1, y: 0, z: 0}

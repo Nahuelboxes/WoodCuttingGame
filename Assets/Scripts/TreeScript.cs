@@ -14,6 +14,7 @@ public class TreeScript : MonoBehaviour
     public float incrementPartY;
     public int maxLogsVisible = 6;
     private Vector3 currentPos = new Vector3(0, 0, 0);
+    public TreeType typeTree;
     [Space]
     public List<GameObject> currentParts = new List<GameObject>();
         
@@ -26,9 +27,9 @@ public class TreeScript : MonoBehaviour
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.D)) {
-            
-            
-              DeleteOneLog();
+            print("Le diste !");
+            currentParts[0].GetComponent<LogBehaviour>().ReceiveHit();
+          //  DeleteOneLog();
             
             
         }
@@ -38,6 +39,7 @@ public class TreeScript : MonoBehaviour
     [ContextMenu("Create Tree")]
     
     public void CreateCreate() {
+
         currTreeHeight = treeHeight;
         currentPos.y += partInitY;
 
@@ -45,6 +47,10 @@ public class TreeScript : MonoBehaviour
         {
             int rndmIndex = RandomSelectParts();
             var p = Instantiate(treeParts[rndmIndex], this.transform);
+            var partScript = p.GetComponent<LogBehaviour>();  //Refactorizar
+            partScript.myTree = this;
+            partScript.type = this.typeTree;
+            partScript.ChoosePart();
             p.transform.position = currentPos + basePoint.position;
             if (i == 0) {
                 currentPos.y += incrementPartY;
@@ -113,6 +119,10 @@ public class TreeScript : MonoBehaviour
              if (add) {
                 int rndmIndex = RandomSelectParts();
                 var p = Instantiate(treeParts[rndmIndex], this.transform);
+                var partScript = p.GetComponent<LogBehaviour>();  //Refactorizar
+                partScript.myTree = this;
+                partScript.type = this.typeTree;
+                partScript.ChoosePart();
                 p.transform.localPosition = localPosNewLog;
 
                 p.name = "Part_" + (treeHeight - currTreeHeight).ToString();
