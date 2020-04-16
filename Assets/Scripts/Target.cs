@@ -9,7 +9,6 @@ public class Target : MonoBehaviour, ITouchable
     public Collider2D[] Colls;
 
     [Space]
-    public float maxRadius = 5f;
     public float touchDistCenter;
 
 
