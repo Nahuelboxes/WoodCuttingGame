@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -38,6 +37,7 @@ public class LvlManager : MonoBehaviour
     public Text lvlTimerText;
 
     [Header("Lumberjack")]
+    public Lumberjack myLumberJack;
     public int maxLives=3;
     public int currLivesAmount;
     public GameObject lifeContainer;
@@ -79,6 +79,7 @@ public class LvlManager : MonoBehaviour
     //Count Down
     public void StartCountdown()
     {
+        InputsManager.instance.DisableTouch();
         countdownPanel.SetActive(true);
         gamePanel.SetActive(false);
 
@@ -156,7 +157,7 @@ public class LvlManager : MonoBehaviour
 
     IEnumerator SetUpRety()
     {
-        ScreensManager.instance.ShowGameScreen(false);
+        ScreensManager.instance.ShowGameScreen(true);
         TransitionManager.instance.StartTransition();
         yield return new WaitForSeconds(2f);
 
@@ -165,11 +166,13 @@ public class LvlManager : MonoBehaviour
         inGame = false;
         InputsManager.instance.DisableTouch();
         CreateLvl();
+        myLumberJack.GoToIdle();
         yield return new WaitForSeconds(3f);
 
 
         TransitionManager.instance.ComeBackFromTransition();
         TransitionManager.instance.OnArriveToGame.Invoke();
+        
     }
 
 
@@ -195,6 +198,7 @@ public class LvlManager : MonoBehaviour
         //Lives
         currLivesAmount = maxLives;
         InitializeLifeUI();
+        InputsManager.instance.EnableTouch();
     }
 
     void GameTick()

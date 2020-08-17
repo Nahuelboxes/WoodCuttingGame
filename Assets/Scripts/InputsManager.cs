@@ -47,7 +47,7 @@ public class InputsManager : MonoBehaviour
 #if UNITY_EDITOR
         DetectMouse();
 #elif UNITY_ANDROID
-        DetectTouch();
+        DetectTouches();
 #endif
     }
 

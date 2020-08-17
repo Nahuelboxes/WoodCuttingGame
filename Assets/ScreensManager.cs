@@ -10,7 +10,9 @@ public class ScreensManager : MonoBehaviour
     public ScreenBehavior pauseScreen;
     public ScreenBehavior winLvlScreen;
     public ScreenBehavior looseLvlScreen;
-    
+
+    [Space]
+    public GameObject blocker;
 
     [Space]
     public ScreenBehavior activeScreen;
@@ -41,7 +43,7 @@ public class ScreensManager : MonoBehaviour
     {
         canSwap = false;
         yield return null;
-
+        ToggleBlocker();
         if (activeScreen != null)
         {
             activeScreen.Hide();
@@ -60,6 +62,7 @@ public class ScreensManager : MonoBehaviour
         yield return new WaitForSeconds(newScreen.showTime);
         activeScreen = newScreen;
         canSwap = true;
+        ToggleBlocker();
     }
 
     public void DeactivateCurrent()
@@ -118,4 +121,17 @@ public class ScreensManager : MonoBehaviour
     {
         StartCoroutine(SwapScreen(looseLvlScreen));
     }
+
+    public void ToggleBlocker(){
+     
+     blocker.SetActive(blocker.activeInHierarchy ? false: true);
+    // blocker
+        // if (blocker.activeInHierarchy){
+        //     blocker.SetActive(false);
+        // }else{
+        //     blocker.SetActive(true);
+        // }
+    }
+    
+
 }
