@@ -24,14 +24,22 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
+<<<<<<< HEAD
       "version": "1.1.4",
+=======
+      "version": "1.2.1",
+>>>>>>> 1b1c41188be91e1b8bb0c0b9beba91c9597f207c
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
+<<<<<<< HEAD
       "version": "1.1.13",
+=======
+      "version": "1.1.16",
+>>>>>>> 1b1c41188be91e1b8bb0c0b9beba91c9597f207c
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -42,7 +50,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
+<<<<<<< HEAD
       "version": "2.0.1",
+=======
+      "version": "2.1.1",
+>>>>>>> 1b1c41188be91e1b8bb0c0b9beba91c9597f207c
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -51,7 +63,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
+<<<<<<< HEAD
       "version": "1.2.14",
+=======
+      "version": "1.2.15",
+>>>>>>> 1b1c41188be91e1b8bb0c0b9beba91c9597f207c
       "depth": 0,
       "source": "registry",
       "dependencies": {},

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8297836171113208576}
   - component: {fileID: 1036811518}
   - component: {fileID: 1036811517}
+  - component: {fileID: 151354165370767016}
   m_Layer: 0
   m_Name: Log
   m_TagString: Untagged
@@ -69,10 +70,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fedbf08ef5869e941b24eb2805a8ff76, type: 3}
+  m_SortingLayerID: -2136093899
+  m_SortingLayer: 2
+  m_SortingOrder: 50
+  m_Sprite: {fileID: -1898521196806578263, guid: 1fb515270951ad940827da4aa048f9ca,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,6 +117,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 20b696add6e2eca4c8d41f1c4922b36a, type: 2}
+  SR: {fileID: 8297836171113208576}
   hitsToDestroy: 0
   explosionPrefab: {fileID: 139366, guid: ef6bc3f5a00346f48a06048276a76826, type: 3}
   offset: {x: 1, y: 0, z: 0}
+  myTree: {fileID: 0}
+--- !u!61 &151354165370767016
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6902609393647026123}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.32832968, y: 0.028330803}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 12.8, y: 11.481646}
+    newSize: {x: 30.000002, y: 7.031251}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.4532757, y: 11.509935}
+  m_EdgeRadius: 0
