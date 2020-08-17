@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class TreeScript : MonoBehaviour
+public class TreeScript : MonoBehaviour //, ISync
 {
+
+    #region tree
+    /*
     [Header("Tree Props")]
     public GameObject[] treeParts;
     public int treeHeight = 10;
-    private int currTreeHeight;
+    private  int currTreeHeight;
+    public int logLeft;
     public Transform basePoint;
     public float partInitY;
     public float incrementPartY;
@@ -17,31 +22,44 @@ public class TreeScript : MonoBehaviour
     public TreeType typeTree;
     [Space]
     public List<GameObject> currentParts = new List<GameObject>();
-        
-    
+
+    [Space]
+    public TargetZoneSpawner targetZone;
+
+    public UnityEvent OnHitCorrectly;
+    public UnityEvent OnEndTree;
+
+
+    [Header("Sync")]
+    public WaitForMe waitSys;
 
     private void Start() {
         
-        CreateCreate();
+       // CreateTree();
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.D)) {
-            print("Le diste !");
-            currentParts[0].GetComponent<LogBehaviour>().ReceiveHit();
-          //  DeleteOneLog();
-            
-            
-        }
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    HitLowestOne();
+
+        //  //  DeleteOneLog();
+
+
+        //}
     }
 
 
     [ContextMenu("Create Tree")]
-    
-    public void CreateCreate() {
+    public void CreateTree()
+    {
+        incrementPartY = typeTree.partHeight;
+
 
         currTreeHeight = treeHeight;
         currentPos.y += partInitY;
+
+        logLeft = currTreeHeight;
 
         for (int i = 0; i < maxLogsVisible; i++)
         {
@@ -64,8 +82,12 @@ public class TreeScript : MonoBehaviour
 
             currTreeHeight--;
         }
-        
 
+
+        targetZone.CreateTargets();
+        // targetZone.InitializeZone();
+
+        CompleteCondition();
     }
 
     public void DeleteOneLog()
@@ -75,12 +97,14 @@ public class TreeScript : MonoBehaviour
             print("DEJA DE TALAR SOS TONTITO ? no hay MASSSSSSSS");
             return;
         }
-            if (currTreeHeight > 0)
+        if (currTreeHeight > 0)
         {
             //   Destroy(currentParts[0]);
             currentParts[0].GetComponent<LogBehaviour>().Delete();
             currentParts.RemoveAt(0);
-            
+
+            logLeft--;
+
             OrganizeLogs(true);
            
         }
@@ -90,12 +114,17 @@ public class TreeScript : MonoBehaviour
             currentParts[0].GetComponent<LogBehaviour>().Delete();
             currentParts.RemoveAt(0);
             currTreeHeight--;
+
+            logLeft--;
+
             OrganizeLogs(false);
         }
 
         if (currTreeHeight <= -(maxLogsVisible))
         {
             print("Ganaste !!!");
+
+            OnEndTree.Invoke();
         }
   
     }
@@ -116,7 +145,8 @@ public class TreeScript : MonoBehaviour
         localPosNewLog.y = (maxLogsVisible*incrementPartY)-incrementPartY/2 ;
         localPosNewLog.x = 0;
         localPosNewLog.z = 0;
-             if (add) {
+        if (add)
+        {
                 int rndmIndex = RandomSelectParts();
                 var p = Instantiate(treeParts[rndmIndex], this.transform);
                 var partScript = p.GetComponent<LogBehaviour>();  //Refactorizar
@@ -138,16 +168,147 @@ public class TreeScript : MonoBehaviour
 
     }
 
+    public void HitLowestOne()
+    {
+        print("Le diste !");
+        currentParts[0].GetComponent<LogBehaviour>().ReceiveHit();
+
+        OnHitCorrectly.Invoke();
+        //Deberia llamar a un manager del nivel que deberia controlar los valores del arbol y las animaciones del Leñador
+    }
+
     
+    */
+    #endregion
+    public bool treeCreated = false;
+    public Transform basePoint;
+    public int partsInScreen = 10;
+    public float partSizeY; // take from tree type
+    private int partLeft = 100;
+
+    public List<GameObject> treeParts = new List<GameObject>();
+
+    public GameObject samplePart;
+
+    public UnityEvent OnHitCorrectly;
+    public UnityEvent OnEndTree;
+
+    public TargetZoneSpawner targetZone;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CutLowest();
+        }
+    }
+
+    public void CreateTree(LevelInfo lvlInfo, int treesize)
+    {
+        //Clean last tree first
+        CleanTree();
+        //Create and add
+        for (int i = 0;
+            (partsInScreen > treesize) ? i < treesize : i < partsInScreen;
+            i++)
+        {
+            //Replace by pool... or not
+            GameObject p = Instantiate(samplePart, 
+                basePoint.transform.position + new Vector3(0, partSizeY*i + partSizeY/2, 0) ,
+                Quaternion.identity);
+            //Set Up Log Prefab
+            p.GetComponent<LogBehaviour>().SetUpLog(lvlInfo.lvlTypeInfo.treeType);
+            //Fill the list from bottom to top
+            treeParts.Add(p);
+
+            p.GetComponent<LogBehaviour>().myTree = this;
+        }
+        partLeft = treesize;
+
+        treeCreated = true;
+    }
+
+    //call when player touch a target
+    [ContextMenu ("Hit Lowest")]
+    public void CutLowest()
+    {
+        OnHitCorrectly?.Invoke();
+        //remove and desable first One
+        var lowestPart = treeParts[0];
+        lowestPart.GetComponent<LogBehaviour>().GetHit();
+        treeParts[0].SetActive(false);
+        
+        treeParts.RemoveAt(0);
+
+        if (partLeft > partsInScreen) // put back on top
+        {
+            treeParts.Add(lowestPart);
+            lowestPart.SetActive(true);
+        }
+        partLeft--;
+
+        if (partLeft > 0)
+            OrganizeParts();
+        else
+        {
+            Debug.Log("Ganaste!!");
+            OnEndTree.Invoke();
+        }
+
+        //print("This tree has " + partLeft + " parts left.");
+    }
+
+    void OrganizeParts()
+    {
+        for (int i = 0; i < treeParts.Count; i++)
+        {
+            Vector3 newPos = basePoint.transform.position + new Vector3(0, partSizeY * i + partSizeY / 2, 0);
+            treeParts[i].transform.position= newPos;
+        }
+    }
+
+    public void CleanTree()
+    {
+        foreach (var item in treeParts)
+        {
+            Destroy(item);
+        }
+        treeParts.Clear();
+
+        partLeft = 1000;
+        treeCreated = false;
+    }
+
+    public int GetPartsLeft()
+    {
+        return partLeft;
+    }
 
 
+    //Call when player touch the tree, not a target
+    public void OnTouchTree()
+    {
+        targetZone.HandleTreeTouch();
+    }
 
 
+    //#region Syncro
+    ////Sync
+    //public void CompleteCondition()
+    //{
+    //    if (waitSys != null)
+    //    { waitSys.ConditionCompleted(); }
+    //    else
+    //    {
+    //        Debug.LogAssertion("There is no Wait System Assing!");
+    //    }
+    //}
 
-
-
-
-
+    //public void GetSyncroSystem()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+    //#endregion
 
 
 

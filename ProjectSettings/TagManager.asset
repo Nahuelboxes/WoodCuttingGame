@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 186109519
+    locked: 0
+  - name: Game
+    uniqueID: 2158873397
+    locked: 0
+  - name: OverGame
+    uniqueID: 3564542047
+    locked: 0

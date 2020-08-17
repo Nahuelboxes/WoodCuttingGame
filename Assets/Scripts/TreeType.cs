@@ -4,8 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Type",menuName = "ScriptableObject/TreeTypes")]
 public class TreeType : ScriptableObject
-    {
-    public  string Name;
+{
+    public string Name;
     public List<Sprite> parts;
-    public int hitsToDestroyLog;
-    }
+    public float partHeight;
+    public int hitsToDestroyLog=1;
+}
