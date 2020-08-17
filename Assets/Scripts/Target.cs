@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class Target : MonoBehaviour, ITouchable
 {
+    public TargetZoneSpawner targetZone;
+    public gameMode mode;
+    public int index;
+
+
+    [Space]
     public SpriteRenderer[] SRs;
     public int orderInLayer = 10;
     public Collider2D[] Colls;
 
+    public GameObject centerGameObj;
+    public TextMesh numberText;
+
     [Space]
     public float touchDistCenter;
+
+    [Space]
+    public gameMode gameModeSelected;
+    public int simonOrder=0;
 
 
    
@@ -22,6 +35,44 @@ public class Target : MonoBehaviour, ITouchable
         SetCollsNames();
     }
 
+    void OnEnable()
+    {
+        GetActivate();   
+    }
+
+    void GetActivate()
+    {
+        switch (gameModeSelected)
+        {
+            case gameMode.normal:
+
+                break;
+            case gameMode.simon:
+
+                centerGameObj.SetActive(false);
+                numberText.gameObject.SetActive(true);
+                numberText.text = simonOrder.ToString ();
+
+                break;
+         
+            default:
+                break;
+        }
+
+        if (gameModeSelected != gameMode.simon || !targetZone.simonMode.showNumbers)
+        {
+            numberText.gameObject.SetActive(false);
+            centerGameObj.SetActive (true);
+        }
+    }
+
+
+    public void SetUp()
+    {
+        //get current tree
+        //maybe lifetime
+
+    }
 
    
     void Update()
@@ -32,12 +83,18 @@ public class Target : MonoBehaviour, ITouchable
     //Handle Touch
     public void OnTouch(Vector3 touchPos)
     {
-        touchDistCenter = Vector3.Distance(this.transform.position, touchPos);
-        print("Distance to center: " + touchDistCenter);
+        //touchDistCenter = Vector3.Distance(this.transform.position, touchPos);
+        //print("Distance to center: " + touchDistCenter);
+
+        targetZone.HandleTargetTouch(this.gameObject);
+
+        //Deactivate
+        this.gameObject.SetActive (false);
+
     }
 
 
-    //Just Config
+    //Just Tools
     public void GetAllSpriteOnLayer(int layerNumber)
     {
         foreach (var item in SRs)

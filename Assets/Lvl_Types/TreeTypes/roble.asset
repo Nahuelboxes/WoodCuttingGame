@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d72ef7441661846a4da07b2ca4e037, type: 3}
+  m_Name: roble
+  m_EditorClassIdentifier: 
+  Name: roble
+  parts:
+  - {fileID: -5710222579786471642, guid: 06614298365ee644586aff48edfd3ed5, type: 3}
+  - {fileID: -7156633250366397141, guid: 06614298365ee644586aff48edfd3ed5, type: 3}
+  partHeight: 12
+  hitsToDestroyLog: 0
