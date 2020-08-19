@@ -21,7 +21,7 @@ TextureImporter:
       213: -8041019976147432099
     second: Lumberjack_character_sacandohacha_sprites_5
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -75,6 +75,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -135,8 +136,8 @@ TextureImporter:
         y: 2837
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58745086, y: 0.29437205}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -156,8 +157,8 @@ TextureImporter:
         y: 2837
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58745074, y: 0.2907645}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,8 +178,8 @@ TextureImporter:
         y: 2837
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58745074, y: 0.2763345}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -198,8 +199,8 @@ TextureImporter:
         y: 0
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5901837, y: 0.2799422}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -219,8 +220,8 @@ TextureImporter:
         y: 0
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5929163, y: 0.2871572}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,8 +241,8 @@ TextureImporter:
         y: 0
         width: 3745
         height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.58660686, y: 0.2784924}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
