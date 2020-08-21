@@ -14,6 +14,11 @@ public abstract class GameMode_TargetZone : MonoBehaviour
         zone = this.GetComponent<TargetZoneSpawner>();
     }
 
+    public virtual void CleanTargets()
+    {
+        print(modeName + "  shall clean targets");
+    }
+
     public virtual void HandleTargetTouch(GameObject targetTouch, out bool correct)
     {
         correct = false;

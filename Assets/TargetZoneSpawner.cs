@@ -158,6 +158,11 @@ public class TargetZoneSpawner : MonoBehaviour
         return targets[Random.Range(0, targets.Count)];
     }
 
+    public void ClearTreeTargets()
+    {
+        selectedMode.CleanTargets();
+    }
+
     //Handle Touch
     public void HandleTargetTouch(GameObject targetObj)
     {
@@ -175,7 +180,6 @@ public class TargetZoneSpawner : MonoBehaviour
     {
         selectedMode.HandleTreeTouch();
     }
-
 
     public void FinishGame()
     {

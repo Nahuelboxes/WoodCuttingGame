@@ -148,11 +148,7 @@ public class LvlManager : MonoBehaviour
     //Retry Level
     public void Retry()
     {
-        //insert transition
         StartCoroutine(SetUpRety());
-        
-        
-
     }
 
     IEnumerator SetUpRety()
@@ -161,7 +157,6 @@ public class LvlManager : MonoBehaviour
         TransitionManager.instance.StartTransition();
         yield return new WaitForSeconds(2f);
 
-        print("player want to reset this level");
         ResumeGame();
         inGame = false;
         InputsManager.instance.DisableTouch();
@@ -274,7 +269,7 @@ public class LvlManager : MonoBehaviour
         inGame = false;
         OnLooseLvl?.Invoke();
         ScreensManager.instance.ShowLooseLvlScreen();
-
+        InputsManager.instance.DisableTouch();
     }
 
     public void WinLvl()
@@ -282,6 +277,7 @@ public class LvlManager : MonoBehaviour
         inGame = false;
         OnWinLvl?.Invoke();
         ScreensManager.instance.ShowWinLvlScreen();
+        InputsManager.instance.DisableTouch();
 
         lvl_Index++;
         SaveLvlIndex();

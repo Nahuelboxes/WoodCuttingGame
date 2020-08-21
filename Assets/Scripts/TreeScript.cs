@@ -207,6 +207,7 @@ public class TreeScript : MonoBehaviour //, ISync
     {
         //Clean last tree first
         CleanTree();
+       
         //Create and add
         for (int i = 0;
             (partsInScreen > treesize) ? i < treesize : i < partsInScreen;
@@ -275,8 +276,10 @@ public class TreeScript : MonoBehaviour //, ISync
         }
         treeParts.Clear();
 
-        partLeft = 1000;
+        partLeft = 100000;
         treeCreated = false;
+
+        targetZone.ClearTreeTargets();
     }
 
     public int GetPartsLeft()

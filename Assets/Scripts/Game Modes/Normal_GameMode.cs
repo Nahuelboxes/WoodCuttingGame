@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Normal_GameMode : GameMode_TargetZone
 {
-    
     public float timeForNext = 0.1f;
     public int maxAmountTogether = 4;
     public List<GameObject> targetsInScreen = new List<GameObject>();
@@ -16,6 +15,16 @@ public class Normal_GameMode : GameMode_TargetZone
         {
             CheckIfMoreAreNeeded();
         }
+    }
+
+    public override void CleanTargets()
+    {
+        base.CleanTargets();
+        foreach (var item in targetsInScreen)
+        {
+            item.SetActive(false);
+        }
+        targetsInScreen.Clear();
     }
 
 
