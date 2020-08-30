@@ -197,10 +197,10 @@ public class TreeScript : MonoBehaviour //, ISync
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CutLowest();
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    CutLowest();
+        //}
     }
 
     public void CreateTree(LevelInfo lvlInfo, int treesize)
@@ -216,7 +216,7 @@ public class TreeScript : MonoBehaviour //, ISync
             //Replace by pool... or not
             GameObject p = Instantiate(samplePart, 
                 basePoint.transform.position + new Vector3(0, partSizeY*i + partSizeY/2, 0) ,
-                Quaternion.identity);
+                Quaternion.identity, basePoint);
             //Set Up Log Prefab
             p.GetComponent<LogBehaviour>().SetUpLog(lvlInfo.lvlTypeInfo.treeType);
             //Fill the list from bottom to top
@@ -233,6 +233,7 @@ public class TreeScript : MonoBehaviour //, ISync
     [ContextMenu ("Hit Lowest")]
     public void CutLowest()
     {
+        LvlManager.instance.OnCorrectHit(); //just for Rage
         OnHitCorrectly?.Invoke();
         //remove and desable first One
         var lowestPart = treeParts[0];
@@ -287,11 +288,39 @@ public class TreeScript : MonoBehaviour //, ISync
         return partLeft;
     }
 
-
     //Call when player touch the tree, not a target
     public void OnTouchTree()
     {
+        if (LvlManager.instance.inRageMode)
+        {
+            OnRageTouch();
+            return;
+        }
+
         targetZone.HandleTreeTouch();
+    }
+
+    //RAGE
+    public void HandleStartRage()
+    {
+        targetZone.HandleStartRage();
+    }
+
+    public void OnRageTouch()
+    {
+        targetZone.HandleRageTouch();
+        CutLowest();
+    }
+
+    public void HandleEndRage()
+    {
+        targetZone.HandleEndRage();
+    }
+
+    public void HideAllTargets()
+    {
+        //targetZone.currGameMode.
+        //targetZone.Hide();
     }
 
 

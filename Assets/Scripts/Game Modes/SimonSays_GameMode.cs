@@ -26,7 +26,7 @@ public class SimonSays_GameMode : GameMode_TargetZone
         correct = CheckOrder(targetTouch.GetComponent<Target>());
 
         if (!correct)
-            LvlManager.instance.LooseLife();
+            LvlManager.instance.LoseLife();
 
     }
 

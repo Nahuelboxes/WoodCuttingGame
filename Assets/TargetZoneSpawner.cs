@@ -35,6 +35,7 @@ public class TargetZoneSpawner : MonoBehaviour
     private Vector3 currPos;
     private int targetIndex = 0;
 
+    private bool inRageMode = false;
 
     public List<GameObject> targets = new List<GameObject>();
 
@@ -166,6 +167,8 @@ public class TargetZoneSpawner : MonoBehaviour
     //Handle Touch
     public void HandleTargetTouch(GameObject targetObj)
     {
+        if (inRageMode) return;
+
         bool shallHit = false;
 
         selectedMode.HandleTargetTouch(targetObj, out shallHit);
@@ -181,10 +184,39 @@ public class TargetZoneSpawner : MonoBehaviour
         selectedMode.HandleTreeTouch();
     }
 
+    public void HandleStartRage()
+    {
+        inRageMode = true;
+        selectedMode.HandleStartRage();
+    }
+
+    public void HandleRageTouch()
+    {
+        selectedMode.HandleRageTouch();
+    }
+
+    public void HandleEndRage()
+    {
+        inRageMode = false;
+        selectedMode.HandleEndRage();
+    }
+
+
     public void FinishGame()
     {
         selectedMode.EndTree();
     }
+
+    //public void Hide()
+    //{
+    //    foreach (var item in targets)
+    //    {
+    //        item.SetActive(false);
+    //    }
+    //}
+
+
+
 
     private void Update()
     {

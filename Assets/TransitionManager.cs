@@ -66,7 +66,9 @@ public class TransitionManager : MonoBehaviour
 
     public void MoveCamToCurrent()
     {
-        camObj.transform.position = currCont.camPos.transform.position;
+        //camObj.transform.position = currCont.camPos.transform.position;
+        Camera c = camObj.GetComponent<Camera>();
+        currCont.camHolder.AdaptCamera(c); 
     }
 
     //Jump To Game

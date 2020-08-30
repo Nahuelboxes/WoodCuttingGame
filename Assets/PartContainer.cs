@@ -6,7 +6,8 @@ using UnityEngine.Events;
 
 public class PartContainer : MonoBehaviour
 {
-    public Transform camPos;
+    //public Transform camPos;
+    public CameraHolder camHolder;
 
     public bool isReadyToShow = false;
 

@@ -9,7 +9,7 @@ TextureImporter:
       213: 9164747268266545424
     second: Lumberjack_character_jump_1
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -123,8 +124,8 @@ TextureImporter:
         y: 0
         width: 2046
         height: 1383
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.46150628, y: 0.00081130496}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,8 +145,8 @@ TextureImporter:
         y: 0
         width: 2046
         height: 1383
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.4617748, y: 0.0009912646}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

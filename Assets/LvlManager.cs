@@ -36,6 +36,15 @@ public class LvlManager : MonoBehaviour
     public float timer = 0f;
     public Text lvlTimerText;
 
+    [Header("Rage")]
+    public bool canGetRage = true;
+    public bool inRageMode = false;
+    public float rageDuration = 5f;
+    public float rageChargePerHit = 0.3f; // in percentage
+    public float rageLoseOverTime = 0.5f; //in percentage per minute
+    public float currRageAmount = 0f; // current rage amount in percentage
+    public RageBarPresenter rageBarPresenter;
+
     [Header("Lumberjack")]
     public Lumberjack myLumberJack;
     public int maxLives=3;
@@ -72,6 +81,9 @@ public class LvlManager : MonoBehaviour
         if (inGame)
         {
             GameTick();
+
+            //Rage
+            UpdateRage();
         }
     }
 
@@ -145,33 +157,6 @@ public class LvlManager : MonoBehaviour
 
     #endregion
 
-    //Retry Level
-    public void Retry()
-    {
-        StartCoroutine(SetUpRety());
-    }
-
-    IEnumerator SetUpRety()
-    {
-        ScreensManager.instance.ShowGameScreen(true);
-        TransitionManager.instance.StartTransition();
-        yield return new WaitForSeconds(2f);
-
-        ResumeGame();
-        inGame = false;
-        InputsManager.instance.DisableTouch();
-        CreateLvl();
-        myLumberJack.GoToIdle();
-        yield return new WaitForSeconds(3f);
-
-
-        TransitionManager.instance.ComeBackFromTransition();
-        TransitionManager.instance.OnArriveToGame.Invoke();
-        
-    }
-
-
-
     #region Game
     //Game Logic
     public void StartLvl()
@@ -194,6 +179,9 @@ public class LvlManager : MonoBehaviour
         currLivesAmount = maxLives;
         InitializeLifeUI();
         InputsManager.instance.EnableTouch();
+
+        //Rage
+        currRageAmount = 0f;
     }
 
     void GameTick()
@@ -201,30 +189,105 @@ public class LvlManager : MonoBehaviour
         if (isPaused) return;
 
         //Time
-        TimerTick();
+        GameTimerTick();
 
         if (timer <= 0f)
         {
             print("Se terminó el tiempo pibe");
-            LooseLvl();
+            LoseLvl();
 
         }
 
     }
 
     //Game Time and Update time UI
-    void TimerTick()
+    void GameTimerTick()
     {
         timer -= Time.deltaTime * timerScale;
         string min = Mathf.Floor(((int)timer / 60)).ToString();
         string seg = Mathf.Floor((timer % 60)).ToString("00");
         string miliSeg = Mathf.Floor((timer * 10 % 10)).ToString("00");
 
+        if (timer < 0f)
+        {
+            timer = 0f;
+        }
+
         lvlTimerText.text = min + ":" + seg + ":" + miliSeg;
     }
 
-    //Loose Life
-    public void LooseLife()
+    public void StopGameTimeFor(float seconds)
+    {
+        StartCoroutine(StopGameTimerForAWhile(seconds));
+    }
+
+    IEnumerator StopGameTimerForAWhile(float interval)
+    {
+        float t = 0;
+        float currTimeScale = timerScale;
+        timerScale=0f;
+        while (t < interval)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+        timerScale = currTimeScale;
+    }
+
+    //Correct Hit
+    public void OnCorrectHit()
+    {
+        if (inRageMode) return;
+
+        currRageAmount += rageChargePerHit;
+
+        if (currRageAmount >= 1) //Activate Rage
+        {
+            currRageAmount = 1;
+            ActivateRageMode();
+        }
+    }
+
+    //RAGE
+    public void ActivateRageMode()
+    {
+        inRageMode = true;
+        currTree.HandleStartRage();
+        rageBarPresenter.ActivateRage();
+
+        //TO DO: Stop timer and input for the animation
+    }
+
+    void UpdateRage()
+    {
+        if (inRageMode)
+        {
+            currRageAmount -= rageDuration * Time.deltaTime / 60f;
+            if (currRageAmount <= 0)
+            {
+                EndRageMode();
+            }
+        }
+        else
+        {
+            if(currRageAmount >0)
+                currRageAmount -= rageLoseOverTime * Time.deltaTime;
+        }
+        currRageAmount = Mathf.Clamp(currRageAmount, 0f, 1f);
+        rageBarPresenter.UpdateBar(currRageAmount);
+    }
+
+    public void EndRageMode()
+    {
+        inRageMode = false;
+        currRageAmount = 0f;
+        currTree.HandleEndRage();
+
+        rageBarPresenter.EndRage();
+    }
+
+    //Lose Life
+    public void LoseLife()
     {
         currLivesAmount--;
         OnLooseLife?.Invoke();
@@ -233,7 +296,7 @@ public class LvlManager : MonoBehaviour
         if (currLivesAmount <= 0)
         {
             print("Perdiste todas las Vidas");
-            LooseLvl();
+            LoseLvl();
         }
     }
     
@@ -264,10 +327,11 @@ public class LvlManager : MonoBehaviour
         }
     }
 
-    public void LooseLvl()
+    public void LoseLvl()
     {
         inGame = false;
         OnLooseLvl?.Invoke();
+        currTree.targetZone.ClearTreeTargets();
         ScreensManager.instance.ShowLooseLvlScreen();
         InputsManager.instance.DisableTouch();
     }
@@ -284,8 +348,34 @@ public class LvlManager : MonoBehaviour
         //Assings Resources
     }
 
+    //Retry Level
+    public void Retry()
+    {
+        StartCoroutine(SetUpRety());
+    }
+
+    IEnumerator SetUpRety()
+    {
+        ScreensManager.instance.ShowGameScreen(true);
+        TransitionManager.instance.StartTransition();
+        yield return new WaitForSeconds(2f);
+
+        ResumeGame();
+        inGame = false;
+        InputsManager.instance.DisableTouch();
+        CreateLvl();
+        myLumberJack.GoToIdle();
+        yield return new WaitForSeconds(3f);
+
+
+        TransitionManager.instance.ComeBackFromTransition();
+        TransitionManager.instance.OnArriveToGame.Invoke();
+
+    }
     //TO DO:
     //Set a structure to fill up the end panels.
+
+
     #endregion
 
     #region Lvl Management
@@ -297,7 +387,8 @@ public class LvlManager : MonoBehaviour
 
         currTree.CreateTree(currentLevel, currentLevel.targetsAmount); //Create the propper tree 
     }
-
+    
+    //Shall validate game Mode
     private int LoadLvlIndex()
     {
         if (PlayerPrefs.HasKey(lvlIndexSaveName))

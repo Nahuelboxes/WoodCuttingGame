@@ -8,6 +8,8 @@ public class Normal_GameMode : GameMode_TargetZone
     public int maxAmountTogether = 4;
     public List<GameObject> targetsInScreen = new List<GameObject>();
 
+    private bool inRageMode = false;
+
     public override void SetUpMode()
     {
         base.SetUpMode();
@@ -39,11 +41,44 @@ public class Normal_GameMode : GameMode_TargetZone
         StartCoroutine(WaitToGetNextTarget());
     }
 
+    public override void HandleStartRage()
+    {
+        base.HandleStartRage();
+        CleanTargets();
+        inRageMode = true;
+    }
+
+    public override void HandleRageTouch()
+    {
+        base.HandleRageTouch();
+        //int i = GetRandomIndex();
+        //targetsInScreen[i].SetActive(false);
+        //targetsInScreen.RemoveAt(i);
+        //StartCoroutine(WaitToGetNextTarget());
+    }
+
+    public override void HandleEndRage()
+    {
+        base.HandleEndRage();
+        inRageMode = false;
+        for (int i = 0; i < maxAmountTogether; i++)
+        {
+            CheckIfMoreAreNeeded();
+        }
+
+      
+    }
+
+    int GetRandomIndex()
+    {
+        return Random.Range(0, targetsInScreen.Count);
+    }
+    
     public override void HandleTreeTouch()
     {
         base.HandleTreeTouch();
         print("In normal mode touching the tree will be punished!!  :(");
-        LvlManager.instance.LooseLife();
+        LvlManager.instance.LoseLife();
     }
 
 
@@ -62,7 +97,10 @@ public class Normal_GameMode : GameMode_TargetZone
             yield return null;
         }
 
-        CheckIfMoreAreNeeded();
+        if (!inRageMode)
+        {
+            CheckIfMoreAreNeeded();
+        }
     }
 
     void CheckIfMoreAreNeeded()

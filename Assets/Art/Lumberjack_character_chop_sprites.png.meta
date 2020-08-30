@@ -12,7 +12,7 @@ TextureImporter:
       213: 7414132731593647807
     second: Lumberjack_character_chop_sprites_2
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -66,6 +66,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -126,8 +127,8 @@ TextureImporter:
         y: 1532
         width: 3745
         height: 1532
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.52708656, y: 0.06317641}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,8 +148,8 @@ TextureImporter:
         y: 1532
         width: 3745
         height: 1532
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.52716213, y: 0.061562}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,8 +169,8 @@ TextureImporter:
         y: 0
         width: 3745
         height: 1532
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.52679676, y: 0.06309258}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

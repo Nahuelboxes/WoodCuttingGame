@@ -25,9 +25,25 @@ public abstract class GameMode_TargetZone : MonoBehaviour
         print("handle target touch as: " + modeName);
     }
 
+
     public virtual void HandleTreeTouch()
     {
         print("handle tree touch as: " + modeName);
+    }
+
+    public virtual void HandleStartRage()
+    {
+        print("RAGE!");
+    }
+
+    public virtual void HandleRageTouch()
+    {
+        print("Handle RAGE touch");
+    }
+
+    public virtual void HandleEndRage()
+    {
+        print("NO MORE RAGE!");
     }
 
     public virtual void EndTree()

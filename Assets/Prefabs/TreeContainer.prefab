@@ -122,8 +122,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7206397859727241970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0.96000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7206397860898933405}
@@ -143,6 +143,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -167,7 +168,8 @@ SpriteRenderer:
   m_SortingLayerID: -2136093899
   m_SortingLayer: 2
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: f005c1e74e332684ab1f01c3e1587ef0, type: 3}
+  m_Sprite: {fileID: 2331514050048274735, guid: 06614298365ee644586aff48edfd3ed5,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,7 +197,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 30.05009, y: 1.57}
+    oldSize: {x: 19.09, y: 4.961232}
     newSize: {x: 30.05009, y: 1.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -303,8 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeCreated: 0
   basePoint: {fileID: 7206397859727241969}
-  partsInScreen: 10
-  partSizeY: 7.5
+  partsInScreen: 8
+  partSizeY: 19
   treeParts: []
   samplePart: {fileID: 6902609393647026123, guid: cc42341e0b6e4574e94f103d06dd6abf,
     type: 3}
@@ -324,7 +326,18 @@ MonoBehaviour:
         m_CallState: 2
   OnEndTree:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: WinLvl
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   targetZone: {fileID: 7206397859293644874}
 --- !u!114 &312396841
 MonoBehaviour:
