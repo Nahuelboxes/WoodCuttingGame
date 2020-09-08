@@ -12,6 +12,7 @@ public class Lumberjack : MonoBehaviour
     public string loosingLvl;
     public string winningLvl;
     public string goToIdle;
+    public string startGame;
 
     void Start()
     {
@@ -49,5 +50,12 @@ public class Lumberjack : MonoBehaviour
     public void WinLvl()
     {
         anim.SetTrigger(winningLvl);
+    }
+
+    public void Spawn(){
+        anim.CrossFade("Spawn",0);
+    }
+    public void StartGame(){
+        anim.SetTrigger(startGame);
     }
 }
