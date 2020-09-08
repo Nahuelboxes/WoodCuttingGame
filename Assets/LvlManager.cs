@@ -142,6 +142,7 @@ public class LvlManager : MonoBehaviour
         gamePanel.SetActive(true);
         pausePanel.SetActive(false);
 
+        print("Resume Game");
         InputsManager.instance.EnableTouch();
     }
 

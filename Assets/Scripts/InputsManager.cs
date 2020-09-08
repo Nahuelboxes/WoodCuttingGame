@@ -7,7 +7,7 @@ public class InputsManager : MonoBehaviour
 {
     public Camera cam;
     public Vector3 touchPos;
-    private bool canTouch = true;
+    [SerializeField] private bool canTouch = true;
 
     //public delegate void DelInputsManager();
     //public static event DelInputsManager OnTouch;
@@ -119,7 +119,10 @@ public class InputsManager : MonoBehaviour
             yield return null;
         }
 
-        EnableTouch();
+        if (LvlManager.instance.currLivesAmount >= 1)
+        {
+            EnableTouch();
+        }
     }
 
     public void DisableTouch()
