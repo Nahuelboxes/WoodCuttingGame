@@ -1149,7 +1149,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288125567}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -1.340004, y: -8.9, z: -1}
+=======
+  m_LocalPosition: {x: -5.44, y: -2.01, z: -1}
+>>>>>>> 55cf202cb905f153eb615a462ab5901320db368f
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1023495356}
@@ -1195,6 +1199,7 @@ MonoBehaviour:
   loosingLvl: LooseLvl
   winningLvl: 
   goToIdle: GoToIdle
+  startGame: StartGame
 --- !u!95 &290092352
 Animator:
   serializedVersion: 3
@@ -5988,12 +5993,12 @@ PrefabInstance:
     - target: {fileID: 1096350478455668494, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1096350479659850371, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1096350479705094608, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}
@@ -6064,6 +6069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023670226592259342, guid: e224bf99d92ed934aabdf8091766b71d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6065353945631264757, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}

@@ -111,7 +111,10 @@ public class LvlManager : MonoBehaviour
             countDownCurrNumber--;
             countdownText.text = countDownCurrNumber.ToString();
             //Trigger Animation of countdownText
-
+            if (countDownCurrNumber == 1){
+            //StartGame for spawning Animation
+            myLumberJack.StartGame();
+            }
             if (countDownCurrNumber <= 0)
             {
                 StartLvl();
