@@ -241,6 +241,7 @@ public class LvlManager : MonoBehaviour
     //Correct Hit
     public void OnCorrectHit()
     {
+        VibrationManager.instance.Vibrate(vibrationDuration.small);
         if (inRageMode) return;
 
         currRageAmount += rageChargePerHit;
@@ -299,6 +300,7 @@ public class LvlManager : MonoBehaviour
 
         if (currLivesAmount <= 0)
         {
+            VibrationManager.instance.Vibrate(vibrationDuration.large);
             print("Perdiste todas las Vidas");
             LoseLvl();
         }
