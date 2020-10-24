@@ -11,12 +11,10 @@ public class TransitionManager : MonoBehaviour
     public GameObject camObj;
 
     [Space]
-    public PartContainer menuCont;
-    public PartContainer gameCont;
+    public List<ContainerInfo> containers = new List<ContainerInfo>();
 
     [Space]
-    public PartContainer currCont;
-
+    public ContainerInfo currContInfo;
 
     [Header("Transition UI")]
     public AnimatedPartUI trnasitionSreen;
@@ -34,6 +32,9 @@ public class TransitionManager : MonoBehaviour
             instance = this;
         }
         else { Destroy(this); }
+
+        if (containers.Count <= 0)
+            Debug.LogError("No containers in Transition Manager!");
     }
 
     public void StartTransition()
@@ -48,15 +49,21 @@ public class TransitionManager : MonoBehaviour
 
     IEnumerator MovingTo(PartContainer target, TransitionData td)
     {
+        if (target == null)
+        {
+            Debug.LogError("No Target assinged for transitioning! --- PlayMode will be paused");
+            Debug.Break();
+        }
+
         StartTransition();
-        currCont.StartDeactivation();
+        if (currContInfo != null)
+            currContInfo.partCont.StartDeactivation(); //---> Is this necessary?
 
         yield return new WaitForSeconds(td.waitInCurrent);
 
-
-        currCont = target;
+        currContInfo.partCont = target;
         MoveCamToCurrent();
-        currCont.StartActivation();
+        currContInfo.partCont.StartActivation();
 
         //Syncro
         syncroSystem.StartSequence();
@@ -72,15 +79,37 @@ public class TransitionManager : MonoBehaviour
 
         //REFACTOR this
         //print("Transition has ended");
-        OnArriveToGame?.Invoke();
+        HandleArrive(currContInfo.partCont);
+    }
+
+    private void HandleArrive(PartContainer cont)
+    {
+        foreach (var item in containers)
+        {
+            if (item.partCont == cont)
+            {
+                item.OnReachScreen?.Invoke();
+            }
+        }
     }
 
     public void MoveCamToCurrent()
     {
         //camObj.transform.position = currCont.camPos.transform.position;
         Camera c = camObj.GetComponent<Camera>();
-        currCont.camHolder.AdaptCamera(c); 
+        currContInfo.partCont.camHolder.AdaptCamera(c);
     }
+
+    private PartContainer GetContainerByType(CointainersTypes wantedType)
+    {
+        foreach (var item in containers)
+        {
+            if (item.cointainersType == wantedType)
+                return item.partCont;
+        }
+        return null;
+    }
+
 
     //Jump To Game
     public void JumpToGame()
@@ -90,7 +119,7 @@ public class TransitionManager : MonoBehaviour
         d.waitLoadingMin = 2f;
         d.waitInNew = 2f;
 
-        StartCoroutine(MovingTo(gameCont, d) );
+        StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.gameScreen), d) );
     }
 
 
@@ -108,5 +137,20 @@ public struct TransitionData
     public float waitInCurrent;
     public float waitLoadingMin;
     public float waitInNew;
+}
+
+public enum CointainersTypes
+{ 
+    startScreen,
+    gameScreen,
+    storeScreen,
+}
+
+[System.Serializable]
+public class ContainerInfo
+{
+    public CointainersTypes cointainersType;
+    public PartContainer partCont;
+    public UnityEvent OnReachScreen;
 }
 
