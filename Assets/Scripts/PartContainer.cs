@@ -6,7 +6,8 @@ using UnityEngine.Events;
 
 public class PartContainer : MonoBehaviour
 {
-    //public Transform camPos;
+    public WaitForMe syncroAction;
+    [Space]
     public CameraHolder camHolder;
 
     public bool isReadyToShow = false;
@@ -14,7 +15,6 @@ public class PartContainer : MonoBehaviour
     public UnityEvent OnStartActivation;
     public float activationTime = 1f;
     public UnityEvent OnActivate;
-    //public UnityEvent OnHide;
     public UnityEvent OnStartDeactivation;
     public float deactivationTime = 1f;
     public UnityEvent OnDeactivate;
@@ -39,6 +39,7 @@ public class PartContainer : MonoBehaviour
 
     public void Activate()
     {
+        if (syncroAction != null) syncroAction.CompleteAction();
         isReadyToShow = true;
         OnActivate.Invoke();
        

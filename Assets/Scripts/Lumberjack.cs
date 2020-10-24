@@ -14,6 +14,16 @@ public class Lumberjack : MonoBehaviour
     public string goToIdle;
     public string startGame;
 
+    [Header("Rage")]
+    public float rageStartDuration = (1/60) * 40;
+    public string starttingRage;
+    public float rageEndingDuration = (1 / 60) * 40;
+    public string endingRage;
+    public string idleRage;
+    public string hitRage;
+    public Transform axeHolder;
+    public GameObject trhowingAxe;
+
     void Start()
     {
         
@@ -55,7 +65,31 @@ public class Lumberjack : MonoBehaviour
     public void Spawn(){
         anim.CrossFade("Spawn",0);
     }
+
     public void StartGame(){
         anim.SetTrigger(startGame);
+    }
+
+
+    //Rage
+    public void StartRageMode()
+    {
+        anim.SetTrigger(starttingRage);
+    }
+
+    public void TrhowAxe()
+    {
+        Instantiate(trhowingAxe, axeHolder.position, Quaternion.identity);
+    }
+
+    public void EndRage()
+    {
+        anim.SetTrigger(endingRage);
+        anim.ResetTrigger(hitTriggerName);
+    }
+
+    public void RageHit()
+    {
+        anim.SetTrigger(hitRage);
     }
 }

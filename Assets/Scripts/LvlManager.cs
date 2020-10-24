@@ -31,6 +31,10 @@ public class LvlManager : MonoBehaviour
     [Header("Tree Stats")]
     public TreeScript currTree;
 
+    [Header("Tree UI")]
+    public Text logsLeftText;
+    public Text totalLogsText;
+
     [Header("Time")]
     [Range(0f,2f)]public float timerScale = 1f;
     public float timer = 0f;
@@ -179,6 +183,10 @@ public class LvlManager : MonoBehaviour
         //Time
         timer = currentLevel.lvlDuration;
 
+        //Logs
+        totalLogsText.text = currTree.TotalTreeSizeInParts.ToString();
+        logsLeftText.text = currTree.TotalTreeSizeInParts.ToString();
+
         //Lives
         currLivesAmount = maxLives;
         InitializeLifeUI();
@@ -212,12 +220,14 @@ public class LvlManager : MonoBehaviour
         string seg = Mathf.Floor((timer % 60)).ToString("00");
         string miliSeg = Mathf.Floor((timer * 10 % 10)).ToString("00");
 
+        lvlTimerText.text = min + ":" + seg + ":" + miliSeg;
+
         if (timer < 0f)
         {
             timer = 0f;
+            lvlTimerText.text = "00:00:00";
         }
 
-        lvlTimerText.text = min + ":" + seg + ":" + miliSeg;
     }
 
     public void StopGameTimeFor(float seconds)
@@ -241,6 +251,8 @@ public class LvlManager : MonoBehaviour
     //Correct Hit
     public void OnCorrectHit()
     {
+        //Update Tree UI
+        logsLeftText.text = currTree.GetPartsLeft().ToString ();
         if (inRageMode) return;
 
         currRageAmount += rageChargePerHit;
@@ -260,6 +272,8 @@ public class LvlManager : MonoBehaviour
         rageBarPresenter.ActivateRage();
 
         //TO DO: Stop timer and input for the animation
+        myLumberJack.StartRageMode();
+        StopGameTimeFor(myLumberJack.rageStartDuration);
     }
 
     void UpdateRage()
@@ -288,6 +302,11 @@ public class LvlManager : MonoBehaviour
         currTree.HandleEndRage();
 
         rageBarPresenter.EndRage();
+
+        //TO DO: Stop timer and input for the animation
+        myLumberJack.EndRage();
+        StopGameTimeFor(myLumberJack.rageEndingDuration);
+
     }
 
     //Lose Life
@@ -388,7 +407,7 @@ public class LvlManager : MonoBehaviour
     {
         lvl_Index = LoadLvlIndex();
         currentLevel = factory.CreateLvl(GetLvlFromListByType(lvlType.normal), lvl_Index); //Getting Lvl from factory
-
+        print("Current Tree: " + (currTree != null));
         currTree.CreateTree(currentLevel, currentLevel.targetsAmount); //Create the propper tree 
     }
     

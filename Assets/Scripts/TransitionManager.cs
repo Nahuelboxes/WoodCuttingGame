@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class TransitionManager : MonoBehaviour
 {
+    //this one is just for "Go to Game". To Do: Add and array of this for every Transition
+    public WaitForOthers syncroSystem;
+    [Space]
     public GameObject camObj;
 
     [Space]
@@ -54,13 +57,21 @@ public class TransitionManager : MonoBehaviour
         currCont = target;
         MoveCamToCurrent();
         currCont.StartActivation();
-        //OnLodingGame?.Invoke();
+
+        //Syncro
+        syncroSystem.StartSequence();
+        while (!syncroSystem.sequenceCompleted)
+        {
+            yield return null;
+        }
+
         yield return new WaitForSeconds(td.waitLoadingMin);
 
         ComeBackFromTransition();
         yield return new WaitForSeconds(td.waitInNew);
 
-        print("Transition has ended");
+        //REFACTOR this
+        //print("Transition has ended");
         OnArriveToGame?.Invoke();
     }
 

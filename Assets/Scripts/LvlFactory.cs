@@ -25,7 +25,7 @@ public class LvlFactory : MonoBehaviour
         {
             case lvlType.normal:
                 lvlInfo.lvlDuration = index * timePerTarget;
-                lvlInfo.targetsAmount = index * targetPerLvl;
+                lvlInfo.targetsAmount = 50; // index * targetPerLvl;
                 break;
 
             case lvlType.simon:
@@ -70,5 +70,8 @@ public enum lvlType
 { 
     normal,
     simon,
+    cascada,
+    frenesi,
     bonus,
+
 }
