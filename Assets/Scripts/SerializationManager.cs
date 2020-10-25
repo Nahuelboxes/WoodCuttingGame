@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class SerializationManager : MonoBehaviour
     [Tooltip("Level save key is form by lvlType + suffix")]
     public const string lvlSuffix = "_lvl";
     public const string currencyName = "currency";
+    public const string lastPlayedMode = "LastPlayed";
 
     //Singleton
     public static SerializationManager instance;
@@ -53,6 +55,29 @@ public class SerializationManager : MonoBehaviour
     //TODO: Resets
     #endregion
 
+    #region GameModes
+    public lvlType LoadLastGameModePlayed()
+    {
+        if (PlayerPrefs.HasKey(lastPlayedMode))
+        {
+            return GetTypeByName(PlayerPrefs.GetString(lastPlayedMode));
+        }
+
+        return lvlType.normal;
+    }
+
+    public void SaveLastGameModePlayed(lvlType lvlPlayed)
+    {
+        PlayerPrefs.SetString(lastPlayedMode, lvlPlayed.ToString());
+        PlayerPrefs.Save();
+    }
+
+    lvlType GetTypeByName(string name)
+    {
+        return (lvlType)Enum.Parse(typeof(lvlType), name);
+    }
+
+    #endregion
 
     #region Currency
     public int LoadCurrency()

@@ -24,7 +24,7 @@ public class LvlFactory : MonoBehaviour
         switch (lvlInfo.lvlTypeInfo.lvlType)
         {
             case lvlType.normal:
-                lvlInfo.lvlDuration = index * timePerTarget;
+                lvlInfo.lvlDuration = 100;// index * timePerTarget;
                 lvlInfo.targetsAmount = 50; // index * targetPerLvl;
                 break;
 
@@ -73,5 +73,4 @@ public enum lvlType
     cascada,
     frenesi,
     bonus,
-
 }

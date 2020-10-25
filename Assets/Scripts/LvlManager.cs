@@ -22,8 +22,8 @@ public class LvlManager : MonoBehaviour
     public GameObject pausePanel;
 
     [Header("Lvl Info")]
-    public string lvlIndexSaveName = "MyLastLvlIndex";
-    public int lvl_Index=0;
+    public lvlType currentGameMode;
+    private int lvl_Index=1;
     public LvlFactory factory;
     public LevelInfo currentLevel;
     public List<LevelInfo> lvlsList = new List<LevelInfo>();
@@ -175,9 +175,6 @@ public class LvlManager : MonoBehaviour
         //Panels
         countdownPanel.SetActive(false);
         gamePanel.SetActive(true);
-
-        //LVL
-        //CreateLvl();
 
         OnStartGame.Invoke();
         //Time
@@ -367,7 +364,7 @@ public class LvlManager : MonoBehaviour
         InputsManager.instance.DisableTouch();
 
         lvl_Index++;
-        SaveLvlIndex();
+        SerializationManager.instance.SaveCurrentLvl(currentGameMode, lvl_Index);
         //Assings Resources
     }
 
@@ -392,7 +389,10 @@ public class LvlManager : MonoBehaviour
 
 
         TransitionManager.instance.ComeBackFromTransition();
-        TransitionManager.instance.OnArriveToGame.Invoke();
+        StartCountdown();
+
+        currRageAmount = 0f;
+        UpdateRage();
 
     }
     //TO DO:
@@ -402,43 +402,39 @@ public class LvlManager : MonoBehaviour
     #endregion
 
     #region Lvl Management
-    //lvl Set Up  
+   
+    public void SetGameMode(lvlType type) //Unused
+    {
+        currentGameMode = type;
+    }
+
+    public void SetLastPlayedMode()
+    {
+        currentGameMode = SerializationManager.instance.LoadLastGameModePlayed();
+        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+    }
+
+    public void SetNormalGameMode()
+    {
+        currentGameMode = lvlType.normal;
+        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+    }
+    public void SetSimonGameMode()
+    {
+        currentGameMode = lvlType.simon;
+        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+    }
+
+
     public void CreateLvl()
     {
-        lvl_Index = LoadLvlIndex();
-        currentLevel = factory.CreateLvl(GetLvlFromListByType(lvlType.normal), lvl_Index); //Getting Lvl from factory
-        print("Current Tree: " + (currTree != null));
+        currentLevel = factory.CreateLvl(GetLvlFromListByType(currentGameMode), lvl_Index);
+        //print("Current Tree: " + (currTree != null));
         currTree.CreateTree(currentLevel, currentLevel.targetsAmount); //Create the propper tree 
-    }
-    
-    //Shall validate game Mode
-    private int LoadLvlIndex()
-    {
-        if (PlayerPrefs.HasKey(lvlIndexSaveName))
-        {
-            int loadedData = PlayerPrefs.GetInt(lvlIndexSaveName);
-            if (loadedData <= 0)
-            {
-                return 1;
-            }
-            else
-            {
-                return loadedData;
-            }
-        }
-        else
-        {
-            return 1;
-        }
-    }
 
-    private void SaveLvlIndex()
-    {
-        PlayerPrefs.SetInt(lvlIndexSaveName, lvl_Index);
-        PlayerPrefs.Save();
-        
+        SerializationManager.instance.SaveLastGameModePlayed(currentGameMode);
     }
-
+   
     private LevelInfo GetLvlFromListByType(lvlType lvlTypeEnum)
     {
         foreach (var t in lvlsList)

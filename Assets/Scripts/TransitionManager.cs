@@ -18,10 +18,6 @@ public class TransitionManager : MonoBehaviour
 
     [Header("Transition UI")]
     public AnimatedPartUI trnasitionSreen;
-    //Transition UI
-
-    //public UnityEvent OnLodingGame;
-    public UnityEvent OnArriveToGame;
 
     public static TransitionManager instance;
 

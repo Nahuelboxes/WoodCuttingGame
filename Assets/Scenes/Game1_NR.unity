@@ -2965,41 +2965,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  menuCont: {fileID: 1061118157}
-  gameCont: {fileID: 2028692278}
   currContInfo:
     cointainersType: 0
     partCont: {fileID: 1061118157}
     OnReachScreen:
       m_PersistentCalls:
         m_Calls: []
-  currCont: {fileID: 1061118157}
   trnasitionSreen: {fileID: 1906863585}
-  OnArriveToGame:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1770388428}
-        m_MethodName: StartCountdown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1168885932}
-        m_MethodName: ShowGameScreen
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &694330403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5173,8 +5145,7 @@ MonoBehaviour:
   gamePanel: {fileID: 1406781340}
   isPaused: 0
   pausePanel: {fileID: 1473655954}
-  lvlIndexSaveName: MyLastLvlIndex
-  lvl_Index: 0
+  currentGameMode: 0
   factory: {fileID: 1225741361}
   currentLevel:
     lvlTypeInfo: {fileID: 11400000, guid: 0f843386878a42645b98f523c8a3a9f1, type: 2}
@@ -8129,6 +8100,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1168885932}
         m_MethodName: DeactivateCurrent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1770388428}
+        m_MethodName: SetLastPlayedMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
