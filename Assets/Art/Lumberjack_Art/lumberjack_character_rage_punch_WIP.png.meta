@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: 8847da3e6542c7a46b392f286b04542b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2753280386325955082
+    second: lumberjack_character_rage_punch_WIP_0
+  - first:
+      213: 8493804866978800997
+    second: lumberjack_character_rage_punch_WIP_1
+  - first:
+      213: 2781106584516646756
+    second: lumberjack_character_rage_punch_WIP_2
+  - first:
+      213: 6329863757557579660
+    second: lumberjack_character_rage_punch_WIP_3
+  - first:
+      213: 5024038007490347720
+    second: lumberjack_character_rage_punch_WIP_4
+  - first:
+      213: 8831346029815792593
+    second: lumberjack_character_rage_punch_WIP_5
+  - first:
+      213: -8062235818634784607
+    second: lumberjack_character_rage_punch_WIP_6
+  - first:
+      213: -464538173892277347
+    second: lumberjack_character_rage_punch_WIP_7
+  - first:
+      213: 4769113979970480881
+    second: lumberjack_character_rage_punch_WIP_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_0
+      rect:
+        serializedVersion: 2
+        x: 5511
+        y: 4166
+        width: 2515
+        height: 2167
+      alignment: 9
+      pivot: {x: 0.5850514, y: 0.09106029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0242028ced953620800000000000000
+      internalID: 2753280386325955082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_1
+      rect:
+        serializedVersion: 2
+        x: 10010
+        y: 4151
+        width: 3000
+        height: 2182
+      alignment: 9
+      pivot: {x: 0.6018594, y: 0.08686931}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56561cf368e00e570800000000000000
+      internalID: 8493804866978800997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_2
+      rect:
+        serializedVersion: 2
+        x: 15462
+        y: 4260
+        width: 3484
+        height: 2073
+      alignment: 9
+      pivot: {x: 0.403521, y: 0.04303541}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4675d9424b9789620800000000000000
+      internalID: 2781106584516646756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_3
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 2120
+        width: 4359
+        height: 2046
+      alignment: 9
+      pivot: {x: 0.33876434, y: 0.04447273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8fb6d9ec8138d750800000000000000
+      internalID: 6329863757557579660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_4
+      rect:
+        serializedVersion: 2
+        x: 6011
+        y: 2182
+        width: 3202
+        height: 1969
+      alignment: 9
+      pivot: {x: 0.37116557, y: 0.01889889}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2068603f7f8b540800000000000000
+      internalID: 5024038007490347720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_5
+      rect:
+        serializedVersion: 2
+        x: 10744
+        y: 2182
+        width: 2250
+        height: 2000
+      alignment: 9
+      pivot: {x: 0.5746971, y: 0.018716553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d30ab37c6e3f8a70800000000000000
+      internalID: 8831346029815792593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_6
+      rect:
+        serializedVersion: 2
+        x: 15259
+        y: 2214
+        width: 2984
+        height: 1952
+      alignment: 9
+      pivot: {x: 0.6024062, y: 0.006881839}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0d7de0d3f2d1090800000000000000
+      internalID: -8062235818634784607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_7
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 89
+        width: 3484
+        height: 1828
+      alignment: 9
+      pivot: {x: 0.3815934, y: 0.0068646185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bca88fdf0ad89f0800000000000000
+      internalID: -464538173892277347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lumberjack_character_rage_punch_WIP_8
+      rect:
+        serializedVersion: 2
+        x: 5761
+        y: 89
+        width: 4155
+        height: 1843
+      alignment: 9
+      pivot: {x: 0.31981647, y: 0.010877947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa6d7d95eb4f2240800000000000000
+      internalID: 4769113979970480881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
