@@ -250,7 +250,11 @@ public class LvlManager : MonoBehaviour
     {
         //Update Tree UI
         logsLeftText.text = currTree.GetPartsLeft().ToString ();
-        if (inRageMode) return;
+        if (inRageMode) 
+        {
+            myLumberJack.RageHit();
+            return; 
+        }
 
         currRageAmount += rageChargePerHit;
 
