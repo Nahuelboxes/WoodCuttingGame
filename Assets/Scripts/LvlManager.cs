@@ -368,7 +368,7 @@ public class LvlManager : MonoBehaviour
         InputsManager.instance.DisableTouch();
 
         lvl_Index++;
-        SerializationManager.instance.SaveCurrentLvl(currentGameMode, lvl_Index);
+        SerializationManager.instance.SaveLvlByMode(currentGameMode, lvl_Index);
         //Assings Resources
     }
 
@@ -415,18 +415,18 @@ public class LvlManager : MonoBehaviour
     public void SetLastPlayedMode()
     {
         currentGameMode = SerializationManager.instance.LoadLastGameModePlayed();
-        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+        lvl_Index = SerializationManager.instance.LoadLvlByMode(currentGameMode);
     }
 
     public void SetNormalGameMode()
     {
         currentGameMode = lvlType.normal;
-        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+        lvl_Index = SerializationManager.instance.LoadLvlByMode(currentGameMode);
     }
     public void SetSimonGameMode()
     {
         currentGameMode = lvlType.simon;
-        lvl_Index = SerializationManager.instance.LoadCurrentLvl(currentGameMode);
+        lvl_Index = SerializationManager.instance.LoadLvlByMode(currentGameMode);
     }
 
 

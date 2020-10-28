@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class WaitForOthers : MonoBehaviour
 {
     public string nickName = "ToGame";
-    public List<WaitForMe> ActionsNeeded = new List<WaitForMe>();
+    public List<ActionInfo> ActionsNeeded = new List<ActionInfo>();
 
     public UnityEvent OnStartSequence;
     public UnityEvent OnCompleteSequence;
@@ -18,6 +18,8 @@ public class WaitForOthers : MonoBehaviour
     //Check for repeated
     public void StartSequence()
     {
+        print(this.gameObject.name.ToString() + " starting Sequence");
+
         totalSequence = ActionsNeeded.Count;
         currentProgress = 0;
         sequenceCompleted = false;
@@ -25,7 +27,7 @@ public class WaitForOthers : MonoBehaviour
 
         foreach (var act in ActionsNeeded)
         {
-            act.StartAction();
+            act.wait.StartAction();
         }
 
         if (ActionsNeeded.Count <= 0)
@@ -41,6 +43,13 @@ public class WaitForOthers : MonoBehaviour
     public void ActionComplete(WaitForMe obj)
     {
         currentProgress++;
+        foreach (var item in ActionsNeeded)
+        {
+            if (item.wait == obj)
+            {
+                item.completed = true;
+            }
+        }
 
         if (currentProgress >= totalSequence)
             CompleteSequence();
@@ -50,8 +59,14 @@ public class WaitForOthers : MonoBehaviour
     {
         foreach (var act in ActionsNeeded)
         {
-            act.group = this;
+            act.wait.group = this;
         }
     }
 
+}
+[System.Serializable]
+public class ActionInfo
+{
+    public WaitForMe wait;
+    public bool completed;
 }
