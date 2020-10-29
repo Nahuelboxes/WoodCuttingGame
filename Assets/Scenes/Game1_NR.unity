@@ -355,7 +355,7 @@ Transform:
   - {fileID: 1926638886}
   - {fileID: 320960187}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &73923823
 GameObject:
@@ -525,7 +525,7 @@ RectTransform:
   - {fileID: 73923824}
   - {fileID: 586539054}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2504,7 +2504,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586539054}
-  - component: {fileID: 586539055}
   - component: {fileID: 586539057}
   - component: {fileID: 586539056}
   m_Layer: 5
@@ -2535,18 +2534,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &586539055
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586539053}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &586539056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4070,7 +4057,7 @@ Transform:
   - {fileID: 1582221094}
   - {fileID: 1736457024}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1061118157
 MonoBehaviour:
@@ -4839,7 +4826,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1331716820 stripped
 MonoBehaviour:
@@ -6635,7 +6622,7 @@ Transform:
   - {fileID: 994507568}
   - {fileID: 511302823}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2028692278
 MonoBehaviour:
@@ -7173,7 +7160,7 @@ PrefabInstance:
     - target: {fileID: 1096350479705094609, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1096350479705094609, guid: e224bf99d92ed934aabdf8091766b71d,
         type: 3}
@@ -8290,7 +8277,7 @@ RectTransform:
   - {fileID: 1298654358}
   - {fileID: 274478522}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

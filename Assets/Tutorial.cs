@@ -11,7 +11,6 @@ public abstract class Tutorial : MonoBehaviour
     public int stepIndex = 0;
     public GameObject[] tutConts;
 
-    public WaitForMe waitForMe;
     public TutorialAnimSystem sys;
 
     protected virtual void SetUp()
@@ -35,7 +34,8 @@ public abstract class Tutorial : MonoBehaviour
 
     public virtual void NextStep()
     {
-        if (stepIndex < tutConts.Length)
+        tutConts[stepIndex].SetActive(false);
+        if (stepIndex < tutConts.Length-1)
         {
             stepIndex++;
             tutConts[stepIndex].SetActive(true);
@@ -48,9 +48,6 @@ public abstract class Tutorial : MonoBehaviour
 
     public virtual void CompleteTutorial()
     {
-        waitForMe.actionCompleted = true;
-        waitForMe.CompleteAction();
-
         for (int i = 0; i < tutConts.Length; i++)
         {
             tutConts[i].SetActive(false);

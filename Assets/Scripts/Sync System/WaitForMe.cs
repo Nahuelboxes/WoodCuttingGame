@@ -7,7 +7,7 @@ public class WaitForMe : MonoBehaviour
 {
     public bool actionCompleted = false;
     public UnityEvent OnStarAction;
-    [HideInInspector]
+    //[HideInInspector]
     public WaitForOthers group;
 
     public void StartAction()

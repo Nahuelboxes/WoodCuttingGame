@@ -91,9 +91,11 @@ public class ScreensManager : MonoBehaviour
             StartCoroutine(SwapScreen(gameScreen));
         else
         {
+            ToggleBlocker();
             activeScreen.Deactivate();
             activeScreen = gameScreen;
             activeScreen.Activate();
+            ToggleBlocker();
         }    
     }
 
