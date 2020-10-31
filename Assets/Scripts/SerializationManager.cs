@@ -26,7 +26,7 @@ public class SerializationManager : MonoBehaviour
     }
 
     #region Levels
-    public int LoadCurrentLvl(lvlType lvlType)
+    public int LoadLvlByMode(lvlType lvlType)
     {
         int lvl = 1;
         string saveKey = lvlType.ToString() + lvlSuffix;
@@ -41,7 +41,7 @@ public class SerializationManager : MonoBehaviour
         return lvl;
     }
 
-    public void SaveCurrentLvl(lvlType lvlType, int currLvl)
+    public void SaveLvlByMode(lvlType lvlType, int currLvl)
     {
         string saveKey = lvlType.ToString() + lvlSuffix;
 
@@ -49,6 +49,14 @@ public class SerializationManager : MonoBehaviour
             currLvl = 1;
 
         PlayerPrefs.SetInt(saveKey, currLvl);
+        PlayerPrefs.Save();
+    }
+
+    [ContextMenu("Reset Normal Levels")]
+    public void ResetNormalLvlIndexes()
+    {
+        string saveKey = lvlType.normal.ToString() + lvlSuffix;
+        PlayerPrefs.SetInt(saveKey, 1);
         PlayerPrefs.Save();
     }
 

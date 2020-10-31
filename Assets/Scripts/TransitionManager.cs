@@ -19,6 +19,9 @@ public class TransitionManager : MonoBehaviour
     [Header("Transition UI")]
     public AnimatedPartUI trnasitionSreen;
 
+    [Header("Tutorial System")]
+    public TutorialAnimSystem tutSystem;
+
     public static TransitionManager instance;
 
     private void Awake()
@@ -63,11 +66,21 @@ public class TransitionManager : MonoBehaviour
 
         //Syncro
         syncroSystem.StartSequence();
+        //if I am moving to GameScreen
+        if (currContInfo.cointainersType == CointainersTypes.gameScreen)
+        {
+            //ask for tutorial stuff
+            tutSystem.TryTriggerTutorial(LvlManager.instance.currentGameMode);
+            print(LvlManager.instance.currentGameMode.ToString());
+        }
+
+     
         while (!syncroSystem.sequenceCompleted)
         {
             yield return null;
         }
 
+      
         yield return new WaitForSeconds(td.waitLoadingMin);
 
         ComeBackFromTransition();
@@ -115,6 +128,7 @@ public class TransitionManager : MonoBehaviour
         d.waitLoadingMin = 2f;
         d.waitInNew = 2f;
 
+        currContInfo.cointainersType = CointainersTypes.gameScreen;
         StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.gameScreen), d) );
     }
 
