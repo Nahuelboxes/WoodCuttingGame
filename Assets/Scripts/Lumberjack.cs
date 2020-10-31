@@ -24,6 +24,9 @@ public class Lumberjack : MonoBehaviour
     public Transform axeHolder;
     public GameObject trhowingAxe;
 
+    [Header("Wrong Hit")]
+    public GameObject brokenAxe;
+
     void Start()
     {
         
@@ -50,6 +53,12 @@ public class Lumberjack : MonoBehaviour
     {
         //print("Uhhh el leñador le pifió...");
         anim.SetTrigger(wrongTriggerName);
+        //SpawnBrokenAxe();
+    }
+
+    public void SpawnBrokenAxe()
+    {
+        Instantiate(brokenAxe, axeHolder.position, Quaternion.identity);
     }
 
     public void LooseLvl()
