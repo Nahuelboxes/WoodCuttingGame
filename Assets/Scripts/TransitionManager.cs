@@ -132,15 +132,28 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.gameScreen), d) );
     }
 
-
-    //Jump Back to Start
     public void JumpToStart()
-    { 
-        //Simply reload Scene??
+    {
+        TransitionData d = new TransitionData();
+        d.waitInCurrent = 1f;
+        d.waitLoadingMin = 2f;
+        d.waitInNew = 2f;
 
+        currContInfo.cointainersType = CointainersTypes.startScreen;
+        StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.startScreen), d));
     }
 
-   
+    public void JumpToStore()
+    {
+        TransitionData d = new TransitionData();
+        d.waitInCurrent = 1f;
+        d.waitLoadingMin = 2f;
+        d.waitInNew = 2f;
+
+        currContInfo.cointainersType = CointainersTypes.storeScreen;
+        StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.storeScreen), d));
+    }
+
 }
 public struct TransitionData
 {
@@ -154,6 +167,8 @@ public enum CointainersTypes
     startScreen,
     gameScreen,
     storeScreen,
+    mapScreen,
+
 }
 
 [System.Serializable]

@@ -26,7 +26,7 @@ public class PartContainer : MonoBehaviour
     {
         isReadyToShow = false;
         this.gameObject.SetActive(true);
-        OnStartActivation.Invoke();
+        OnStartActivation?.Invoke();
         StartCoroutine(WaitForActivation());
     }
 
@@ -50,7 +50,7 @@ public class PartContainer : MonoBehaviour
     //Deactivation
     public void StartDeactivation()
     {
-        OnStartDeactivation.Invoke();
+        OnStartDeactivation?.Invoke();
         StartCoroutine(WaitForDeactivation());
     }
 
