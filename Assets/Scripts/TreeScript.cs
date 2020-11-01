@@ -4,9 +4,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TreeScript : MonoBehaviour //, ISync
+public class TreeScript : MonoBehaviour
 {
+    public WaitForMe syncroAction;
 
+    [Space]
     #region tree
     /*
     [Header("Tree Props")]
@@ -184,7 +186,10 @@ public class TreeScript : MonoBehaviour //, ISync
     public Transform basePoint;
     public int partsInScreen = 10;
     public float partSizeY; // take from tree type
-    private int partLeft = 100;
+    [SerializeField] private int partLeft = 100;
+    private int totalTreeSizeInParts;
+    public int TotalTreeSizeInParts
+    { get { return totalTreeSizeInParts; } }
 
     public List<GameObject> treeParts = new List<GameObject>();
 
@@ -217,6 +222,7 @@ public class TreeScript : MonoBehaviour //, ISync
             GameObject p = Instantiate(samplePart, 
                 basePoint.transform.position + new Vector3(0, partSizeY*i + partSizeY/2, 0) ,
                 Quaternion.identity, basePoint);
+
             //Set Up Log Prefab
             p.GetComponent<LogBehaviour>().SetUpLog(lvlInfo.lvlTypeInfo.treeType);
             //Fill the list from bottom to top
@@ -224,17 +230,21 @@ public class TreeScript : MonoBehaviour //, ISync
 
             p.GetComponent<LogBehaviour>().myTree = this;
         }
+        totalTreeSizeInParts = treesize;
         partLeft = treesize;
 
         treeCreated = true;
+
+        if (syncroAction != null)
+        {
+            syncroAction.CompleteAction();
+        }
     }
 
     //call when player touch a target
     [ContextMenu ("Hit Lowest")]
     public void CutLowest()
     {
-        LvlManager.instance.OnCorrectHit(); //just for Rage
-        OnHitCorrectly?.Invoke();
         //remove and desable first One
         var lowestPart = treeParts[0];
         lowestPart.GetComponent<LogBehaviour>().GetHit();
@@ -257,6 +267,8 @@ public class TreeScript : MonoBehaviour //, ISync
             OnEndTree.Invoke();
         }
 
+        LvlManager.instance.OnCorrectHit();
+        OnHitCorrectly?.Invoke();
         //print("This tree has " + partLeft + " parts left.");
     }
 
