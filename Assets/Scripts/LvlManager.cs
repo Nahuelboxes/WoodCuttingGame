@@ -319,6 +319,7 @@ public class LvlManager : MonoBehaviour
 
         if (currLivesAmount <= 0)
         {
+            VibrationManager.instance.Vibrate(vibrationDuration.large);
             print("Perdiste todas las Vidas");
             LoseLvl();
         }
