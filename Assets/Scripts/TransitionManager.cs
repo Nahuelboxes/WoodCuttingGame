@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class TransitionManager : MonoBehaviour
 {
-    //this one is just for "Go to Game". To Do: Add and array of this for every Transition
-    public WaitForOthers syncroSystem;
     [Space]
     public GameObject camObj;
 
@@ -21,6 +19,9 @@ public class TransitionManager : MonoBehaviour
 
     [Header("Tutorial System")]
     public TutorialAnimSystem tutSystem;
+
+    [Space]
+    public string gameScreenName = "GameSceen";
 
     public static TransitionManager instance;
 
@@ -46,27 +47,35 @@ public class TransitionManager : MonoBehaviour
         trnasitionSreen.StartAnimOut();
     }
 
-    IEnumerator MovingTo(PartContainer target, TransitionData td)
+    IEnumerator MovingTo(ContainerInfo target, TransitionData td)
     {
         if (target == null)
         {
             Debug.LogError("No Target assinged for transitioning! --- PlayMode will be paused");
             Debug.Break();
+            yield break;
+        }
+        if (target == currContInfo)
+        {
+            //Debug.LogError("Calling the same Container!");
+            yield break;
         }
 
+        NewScreenManager SM = NewScreenManager.instance;
+        SM.DeactivateBottomPanel();
         StartTransition();
-        if (currContInfo != null)
-            currContInfo.partCont.StartDeactivation(); //---> Is this necessary?
-
+   
         yield return new WaitForSeconds(td.waitInCurrent);
 
-        currContInfo.partCont = target;
+        SM.ActivateBlocker();
+        SM.DeactiveCurrent();
+
+        currContInfo = target;
         MoveCamToCurrent();
         currContInfo.partCont.StartActivation();
 
         //Syncro
-        syncroSystem.StartSequence();
-        //if I am moving to GameScreen
+        currContInfo.waitForOthersSystem.StartSequence();
         if (currContInfo.cointainersType == CointainersTypes.gameScreen)
         {
             //ask for tutorial stuff
@@ -74,20 +83,23 @@ public class TransitionManager : MonoBehaviour
             print(LvlManager.instance.currentGameMode.ToString());
         }
 
-     
-        while (!syncroSystem.sequenceCompleted)
+        while (!currContInfo.waitForOthersSystem.sequenceCompleted)
         {
             yield return null;
         }
 
-      
-        yield return new WaitForSeconds(td.waitLoadingMin);
+        if (target.cointainersType != CointainersTypes.gameScreen)
+            SM.ActivateBottomPanel();
 
+        SM.SetCurrent(target.screenName);
+        SM.ShowCurrent();
+   
+        yield return new WaitForSeconds(td.waitLoadingMin);
         ComeBackFromTransition();
         yield return new WaitForSeconds(td.waitInNew);
 
-        //REFACTOR this
-        //print("Transition has ended");
+        SM.DeactivateBlocker();
+
         HandleArrive(currContInfo.partCont);
     }
 
@@ -109,18 +121,16 @@ public class TransitionManager : MonoBehaviour
         currContInfo.partCont.camHolder.AdaptCamera(c);
     }
 
-    private PartContainer GetContainerByType(CointainersTypes wantedType)
+    private ContainerInfo GetContainerByType(CointainersTypes wantedType)
     {
         foreach (var item in containers)
         {
             if (item.cointainersType == wantedType)
-                return item.partCont;
+                return item;
         }
         return null;
     }
 
-
-    //Jump To Game
     public void JumpToGame()
     {
         TransitionData d = new TransitionData();
@@ -128,8 +138,8 @@ public class TransitionManager : MonoBehaviour
         d.waitLoadingMin = 2f;
         d.waitInNew = 2f;
 
-        currContInfo.cointainersType = CointainersTypes.gameScreen;
         StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.gameScreen), d) );
+        //currContInfo.cointainersType = CointainersTypes.gameScreen;
     }
 
     public void JumpToStart()
@@ -139,8 +149,8 @@ public class TransitionManager : MonoBehaviour
         d.waitLoadingMin = 2f;
         d.waitInNew = 2f;
 
-        currContInfo.cointainersType = CointainersTypes.startScreen;
         StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.startScreen), d));
+        //currContInfo.cointainersType = CointainersTypes.startScreen;
     }
 
     public void JumpToStore()
@@ -150,8 +160,19 @@ public class TransitionManager : MonoBehaviour
         d.waitLoadingMin = 2f;
         d.waitInNew = 2f;
 
-        currContInfo.cointainersType = CointainersTypes.storeScreen;
         StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.storeScreen), d));
+        //currContInfo.cointainersType = CointainersTypes.storeScreen;
+    }
+
+    public void JumpToMap()
+    {
+        TransitionData d = new TransitionData();
+        d.waitInCurrent = 1f;
+        d.waitLoadingMin = 2f;
+        d.waitInNew = 2f;
+
+        StartCoroutine(MovingTo(GetContainerByType(CointainersTypes.mapScreen), d));
+        //currContInfo.cointainersType = CointainersTypes.mapScreen;
     }
 
 }
@@ -177,5 +198,8 @@ public class ContainerInfo
     public CointainersTypes cointainersType;
     public PartContainer partCont;
     public UnityEvent OnReachScreen;
+    public WaitForOthers waitForOthersSystem;
+    public string screenName;
+
 }
 

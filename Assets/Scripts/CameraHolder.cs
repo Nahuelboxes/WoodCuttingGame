@@ -21,6 +21,10 @@ public class CameraHolder : MonoBehaviour
 
     public void OnDrawGizmos()
     {
+        //Vector3 cubeSize = new Vector3(Screen.currentResolution.height / camFieldOfView,
+        //    Screen.currentResolution.width / camFieldOfView,
+        //    100f);
+        //Gizmos.DrawWireCube(this.transform.position, cubeSize);
         //Draw frustrum example
         //Gizmos.DrawFrustum(new Vector3(this.transform.position.x, this.transform.position.y, cam.nearClipPlane),
         //    cam.fieldOfView,

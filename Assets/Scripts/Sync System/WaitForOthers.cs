@@ -20,6 +20,12 @@ public class WaitForOthers : MonoBehaviour
     {
         print(this.gameObject.name.ToString() + " starting Sequence");
 
+        if (ActionsNeeded.Count <= 0)
+        { 
+            CompleteSequence();
+            return;
+        }
+
         totalSequence = ActionsNeeded.Count;
         currentProgress = 0;
         sequenceCompleted = false;
@@ -30,8 +36,6 @@ public class WaitForOthers : MonoBehaviour
             act.wait.StartAction();
         }
 
-        if (ActionsNeeded.Count <= 0)
-            CompleteSequence();
     }
 
     public void CompleteSequence()

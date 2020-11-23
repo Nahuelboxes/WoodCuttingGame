@@ -357,7 +357,7 @@ public class LvlManager : MonoBehaviour
         inGame = false;
         OnLooseLvl?.Invoke();
         currTree.targetZone.ClearTreeTargets();
-        ScreensManager.instance.ShowLooseLvlScreen();
+        //ScreensManager.instance.ShowLooseLvlScreen();
         InputsManager.instance.DisableTouch();
     }
 
@@ -365,7 +365,7 @@ public class LvlManager : MonoBehaviour
     {
         inGame = false;
         OnWinLvl?.Invoke();
-        ScreensManager.instance.ShowWinLvlScreen();
+        //ScreensManager.instance.ShowWinLvlScreen();
         InputsManager.instance.DisableTouch();
 
         lvl_Index++;
@@ -381,7 +381,7 @@ public class LvlManager : MonoBehaviour
 
     IEnumerator SetUpRety()
     {
-        ScreensManager.instance.ShowGameScreen(true);
+        //ScreensManager.instance.ShowGameScreen(true);
         TransitionManager.instance.StartTransition();
         yield return new WaitForSeconds(2f);
 
