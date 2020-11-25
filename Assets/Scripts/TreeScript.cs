@@ -200,12 +200,30 @@ public class TreeScript : MonoBehaviour
 
     public TargetZoneSpawner targetZone;
 
+
+    [Header ("Effects")]
+    public Transform shooter;
+    public GameObject breakWood;
+    public int breaksAmount = 2;
+    public GameObject explosion;
+
+
+    float maxTimeWithNoHits = 0.5f;
+    float hitsTime = 0f;
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.C))
         //{
         //    CutLowest();
         //}
+
+        hitsTime += Time.deltaTime;
+        if (hitsTime >= maxTimeWithNoHits)
+        {
+            hitsTime = 0;
+            OrganizeParts();
+        }
+
     }
 
     public void CreateTree(LevelInfo lvlInfo, int treesize)
@@ -252,6 +270,8 @@ public class TreeScript : MonoBehaviour
         
         treeParts.RemoveAt(0);
 
+        BreakPart();
+
         if (partLeft > partsInScreen) // put back on top
         {
             treeParts.Add(lowestPart);
@@ -260,7 +280,11 @@ public class TreeScript : MonoBehaviour
         partLeft--;
 
         if (partLeft > 0)
-            OrganizeParts();
+        {
+            hitsTime = 0f;
+            Organize2();
+            //OrganizeParts(); 
+        }
         else
         {
             Debug.Log("Ganaste!!");
@@ -278,6 +302,15 @@ public class TreeScript : MonoBehaviour
         {
             Vector3 newPos = basePoint.transform.position + new Vector3(0, partSizeY * i + partSizeY / 2, 0);
             treeParts[i].transform.position= newPos;
+        }
+    }
+
+    void Organize2()
+    {
+        for (int i = 1; i < treeParts.Count; i++)
+        {
+            Vector3 newPos = basePoint.transform.position + new Vector3(0, partSizeY * i + partSizeY / 2, 0);
+            treeParts[i].transform.position = newPos;
         }
     }
 
@@ -299,6 +332,16 @@ public class TreeScript : MonoBehaviour
     {
         return partLeft;
     }
+
+    void BreakPart()
+    {
+        Instantiate(explosion, shooter.position, Quaternion.identity);
+        for (int i = 0; i < breaksAmount; i++)
+        {
+            Instantiate(breakWood, shooter.position, Quaternion.identity);
+        }
+    }
+
 
     //Call when player touch the tree, not a target
     public void OnTouchTree()

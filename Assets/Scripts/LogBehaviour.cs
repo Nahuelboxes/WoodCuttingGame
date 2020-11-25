@@ -31,7 +31,7 @@ public class LogBehaviour : MonoBehaviour, ITouchable
 
     public void GetHit()
     {
-        var explosion = Instantiate(explosionPrefab, this.transform.position + offset, Quaternion.identity);
+       // var explosion = Instantiate(explosionPrefab, this.transform.position + offset, Quaternion.identity);
     }
 
     public void OnTouch(Vector3 touchPos)

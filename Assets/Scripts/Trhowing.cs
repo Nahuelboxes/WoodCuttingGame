@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent (typeof (Rigidbody2D))]
 public class Trhowing : MonoBehaviour
@@ -22,6 +23,10 @@ public class Trhowing : MonoBehaviour
     [Tooltip("Only with coroutine")]
     public bool rotate = true;
     public float angularSpeed = -90f;
+
+
+    //[Header("DoTween")]
+
 
     private void OnEnable()
     {
@@ -81,5 +86,10 @@ public class Trhowing : MonoBehaviour
 
         }
     }
+
+    //private void Update()
+    //{
+    //    this.transform.DOMoveX()
+    //}
 
 }
